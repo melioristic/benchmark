@@ -43,6 +43,7 @@ def compute_weighted_rmse(da_fc, da_true, mean_dims=xr.ALL_DIMS):
     Returns:
         rmse: Latitude weighted root mean squared error
     """
+    assert set(("lat", "lon", "lead_time", "init_time")) == set(da_fc.dims) == set(da_true.dims)
     error = da_fc - da_true
     weights_lat = np.cos(np.deg2rad(error.lat))
     weights_lat /= weights_lat.mean()
@@ -63,14 +64,17 @@ def compute_weighted_acc(da_fc, da_true, mean_dims=xr.ALL_DIMS):
         acc: Latitude weighted acc
     """
 
-    clim = da_true.mean("time")
+    assert set(("lat", "lon", "lead_time", "init_time")) == set(da_fc.dims) == set(da_true.dims)
+
+
+    clim = da_true.mean("init_time")
     try:
-        t = np.intersect1d(da_fc.time, da_true.time)
-        fa = da_fc.sel(time=t) - clim
+        t = np.intersect1d(da_fc.init_time, da_true.init_time)
+        fa = da_fc.sel(init_time=t) - clim
     except AttributeError:
-        t = da_true.time.values
+        t = da_true.init_time.values
         fa = da_fc - clim
-    a = da_true.sel(time=t) - clim
+    a = da_true.sel(init_time=t) - clim
 
     weights_lat = np.cos(np.deg2rad(da_fc.lat))
     weights_lat /= weights_lat.mean()
@@ -95,6 +99,8 @@ def compute_weighted_mae(da_fc, da_true, mean_dims=xr.ALL_DIMS):
     Returns:
         mae: Latitude weighted root mean absolute error
     """
+    assert set(("lat", "lon", "lead_time", "init_time")) == set(da_fc.dims) == set(da_true.dims)
+
     error = da_fc - da_true
     weights_lat = np.cos(np.deg2rad(error.lat))
     weights_lat /= weights_lat.mean()
