@@ -18,11 +18,12 @@ State if you are open to contributions and what your requirements are for accept
 
 ## Authors and acknowledgment
 Participants:
-[Mohit Anand](https://github.com/melioristic)
-[Jonathan Wider](https://github.com/jonathanwider)
+- [Mohit Anand](https://github.com/melioristic)
+- [Jonathan Wider](https://github.com/jonathanwider)
+
 Mentors:
-[Jesper Dramsch](https://github.com/JesperDramsch)
-[Florian Pinault](https://github.com/floriankrb)
+- [Jesper Dramsch](https://github.com/JesperDramsch)
+- [Florian Pinault](https://github.com/floriankrb)
 
 ## License
 This project contains code from [WeatherBench](https://github.com/pangeo-data/WeatherBench), WeatherBench is licensed under the [MIT License](https://github.com/melioristic/benchmark/blob/main/WEATHERBENCH_LICENSE). Our changes to the code are licensed under the [Apache 2.0 License](https://github.com/melioristic/benchmark/blob/main/LICENSE).
